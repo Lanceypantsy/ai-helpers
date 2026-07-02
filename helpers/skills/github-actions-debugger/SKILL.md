@@ -34,10 +34,11 @@ When the user provides a full GitHub Actions URL, parse it to extract the reposi
 then use `-R` to target that repository. **Always use the repository from the URL, ignoring the local git remote.**
 
 Before constructing any command from a URL, validate the extracted values:
-- Repository paths must only contain letters, digits, hyphens, underscores, and a single forward slash.
+- Owner names must only contain letters, digits, and hyphens.
+- Repository names must only contain letters, digits, hyphens, underscores, and dots.
 - Run IDs and job IDs must be purely numeric.
 - Workflow file names must only contain letters, digits, hyphens, underscores, and dots.
-If any value fails validation, reject it and ask the user to provide a corrected URL or ID.
+If any extracted value fails its rule, reject it and ask the user to provide a corrected URL or ID.
 
 - **Run URL** format: `https://github.com/<owner>/<repo>/actions/runs/<run-id>`
   - Extract: `-R <owner>/<repo>` and `<run-id>`
