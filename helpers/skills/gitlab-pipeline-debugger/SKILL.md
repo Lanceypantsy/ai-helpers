@@ -18,9 +18,9 @@ This skill enables Claude to investigate GitLab CI pipeline failures by:
 - `glab` CLI installed and authenticated (`glab auth status` to verify)
 - Git repository with GitLab remote configured (for automatic repo detection)
 
-If `glab` is not installed or authenticated, provide instructions for setting it up:
-- Install: https://gitlab.com/gitlab-org/cli#installation
-- Authenticate: `glab auth login`
+If `glab` is not installed, ask the user to follow installation instructions at https://gitlab.com/gitlab-org/cli#installation
+
+If `glab` is not authenticated, ask the user to run `glab auth login`.
 
 ## Instructions
 
@@ -97,8 +97,6 @@ glab ci trace 789012 -R my-org/my-project
 
 ## Error Handling
 
-- If `glab` is not found, instruct the user to install it
-- If `glab auth status` reports unauthenticated, instruct the user to run `glab auth login`
 - If a pipeline or job is not found, show the error and suggest checking the ID or branch name
 - If the repo cannot be detected, suggest using `-R <owner/group/project>` or running from within
   the correct git repository

@@ -18,9 +18,9 @@ This skill enables Claude to investigate GitHub Actions failures by:
 - `gh` CLI installed and authenticated (`gh auth status` to verify)
 - Git repository with a GitHub remote configured (for automatic repo detection)
 
-If `gh` is not installed or authenticated, provide setup instructions:
-- Install: https://cli.github.com/
-- Authenticate: `gh auth login`
+If `gh` is not installed, ask the user to follow installation instructions at https://cli.github.com/
+
+If `gh` is not authenticated, ask the user to run `gh auth login`.
 
 ## Instructions
 
@@ -116,8 +116,6 @@ gh run rerun 123456789 --failed
 
 ## Error Handling
 
-- If `gh` is not found, instruct the user to install it from https://cli.github.com/
-- If `gh auth status` reports unauthenticated, instruct the user to run `gh auth login`
 - If a run ID is not found, show the error and suggest running `gh run list` to find the correct ID
 - If the repository cannot be detected, suggest using `-R <owner>/<repo>` or running from within the correct git repository
 - If logs are unavailable (e.g., run too old or log retention expired), inform the user and suggest checking the GitHub Actions UI directly
