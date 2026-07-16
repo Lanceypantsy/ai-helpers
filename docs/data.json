@@ -34,6 +34,9 @@
     },
     "odh modules": {
       "name": "ODH Modules"
+    },
+    "maas": {
+      "name": "MaaS"
     }
   },
   "tools": {
@@ -424,6 +427,14 @@
         "file_path": "helpers/skills/learning-mode/SKILL.md",
         "id": "learning-mode",
         "allowed_tools": ""
+      },
+      {
+        "name": "maas-nightly-qe-impact",
+        "description": "Assess whether a Models-as-a-Service autofix change requires follow-up in opendatahub-tests or ods-ci nightly QE pipelines. Runs as a Jira autofix post_review extension for the Model as a Service component. Appends a Nightly QE Impact section to the PR description and writes informational findings. Use when autofix completes a fix in models-as-a-service.",
+        "category": "maas",
+        "file_path": "helpers/skills/maas-nightly-qe-impact/SKILL.md",
+        "id": "maas-nightly-qe-impact",
+        "allowed_tools": "Read Write Bash Grep Glob"
       },
       {
         "name": "module-compliance",
