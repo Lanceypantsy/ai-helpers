@@ -39,8 +39,8 @@
 #                       before approving + merging the PR.
 #
 # To simplify in a future release, the registry could use kserve_entry_name as
-# the component key (e.g. `llm-d-router` instead of `inference-scheduler`).
-# Kept as-is for now to avoid churn.
+# the component key (e.g. `llm-d-workload-variant-autoscaler` instead of
+# `workload-variant-autoscaler`). Kept as-is for now to avoid churn.
 
 release:
   konflux_central_repo: opendatahub-io/odh-konflux-central
@@ -74,20 +74,20 @@ release:
   tracker_title_pattern: "Release Tracker"
 
 components:
-  inference-scheduler:
-    odh_repo: opendatahub-io/llm-d-inference-scheduler
+  llm-d-router:
+    odh_repo: opendatahub-io/llm-d-router
     odh_base_ref: main
-    workflow_component: llm-d-inference-scheduler
+    workflow_component: llm-d-router
     kserve_entry_name: llm-d-router
     tracker_name: llm-d-router
     konflux_files:
-      - tekton_file: .tekton/llm-d-inference-scheduler-push.yaml
-        quay_image: llm-d-inference-scheduler
-        dockerfile: Dockerfile.epp.konflux
+      - tekton_file: .tekton/odh-llm-d-router-endpoint-picker-push.yaml
+        quay_image: llm-d-router-endpoint-picker
+        dockerfile: Dockerfile.konflux.epp
         path_context: .
-      - tekton_file: .tekton/odh-llm-d-routing-sidecar-push.yaml
-        quay_image: llm-d-routing-sidecar
-        dockerfile: Dockerfile.sidecar.konflux
+      - tekton_file: .tekton/odh-llm-d-router-disagg-sidecar-push.yaml
+        quay_image: llm-d-router-disagg-sidecar
+        dockerfile: Dockerfile.konflux.sidecar
         path_context: .
 
   batch-gateway:
@@ -125,14 +125,34 @@ components:
         dockerfile: Dockerfile.konflux
         path_context: .
 
-  llm-d-kv-cache:
-    odh_repo: opendatahub-io/llm-d-kv-cache
+  llm-d-async:
+    odh_repo: opendatahub-io/llm-d-async
     odh_base_ref: main
-    workflow_component: llm-d-kv-cache
-    kserve_entry_name: llm-d-kv-cache
-    tracker_name: llm-d-kv-cache
+    workflow_component: llm-d-async
+    kserve_entry_name: llm-d-async
+    tracker_name: llm-d-async
     konflux_files:
-      - tekton_file: .tekton/odh-llm-d-kv-cache-push.yaml
-        quay_image: llm-d-kv-cache
+      - tekton_file: .tekton/odh-llm-d-async-push.yaml
+        quay_image: odh-llm-d-async
         dockerfile: Dockerfile.konflux
-        path_context: services/uds_tokenizer
+        path_context: .
+
+  llm-d-latency-predictor:
+    odh_repo: opendatahub-io/llm-d-latency-predictor
+    odh_base_ref: main
+    workflow_component: llm-d-latency-predictor
+    kserve_entry_name: llm-d-latency-predictor
+    tracker_name: llm-d-latency-predictor
+    konflux_files:
+      - tekton_file: .tekton/odh-latency-predictor-prediction-push.yaml
+        quay_image: odh-latency-predictor-prediction
+        dockerfile: Dockerfile.konflux.prediction
+        path_context: .
+      - tekton_file: .tekton/odh-latency-predictor-training-push.yaml
+        quay_image: odh-latency-predictor-training
+        dockerfile: Dockerfile.konflux.training
+        path_context: .
+      - tekton_file: .tekton/odh-latency-predictor-test-push.yaml
+        quay_image: odh-latency-predictor-test
+        dockerfile: Dockerfile.konflux.test
+        path_context: .

@@ -7,7 +7,7 @@
 #   [{"name":"llm-d-router","version":"v0.7.1"},
 #    {"name":"llm-d-workload-variant-autoscaler","version":"v0.7.0"},
 #    {"name":"batch-gateway","version":"v0.5.1"},
-#    {"name":"llm-d-kv-cache","version":"v0.7.1"},
+#    {"name":"llm-d-latency-predictor","version":"v0.7.1"},
 #    {"name":"vLLM","version":"v0.19.1"}]
 #
 # Behavior:

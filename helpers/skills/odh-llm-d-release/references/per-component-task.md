@@ -10,7 +10,7 @@ can assemble the tracker comment.
 ## Inputs (substituted by the orchestrator)
 
 - `SKILL_DIR`             — path to the orchestrator skill's directory
-- `COMPONENT_KEY`         — registry key (e.g. `inference-scheduler`)
+- `COMPONENT_KEY`         — registry key (e.g. `llm-d-router`)
 - `VERSION`               — the `--version` value (e.g. `v3.5-ea2`)
 
 Optional (with defaults if omitted):

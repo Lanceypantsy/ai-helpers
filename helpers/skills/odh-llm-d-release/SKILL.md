@@ -200,7 +200,7 @@ per the doc:
 ```
 
 `component_name` uses the registry's `tracker_name` (the short form used by
-humans in the tracker, e.g. `llm-d-router`, `wva`, `llm-d-kv-cache`) — not
+humans in the tracker, e.g. `llm-d-router`, `wva`, `batch-gateway`) — not
 the full `kserve_entry_name`.
 
 **Image-pending marker.** A component is still included in the tracker
@@ -233,10 +233,9 @@ follow up on manually:
 ODH llm-d Release — v3.5-ea2
 
 Component                    Branch                 Tag             Release         Quay
-inference-scheduler          release-v3.5-ea2  ✓    odh-v3.5-ea2 ✓  draft URL       2/2 found
+llm-d-router                 release-v3.5-ea2  ✓    odh-v3.5-ea2 ✓  draft URL       2/2 found
 batch-gateway                release-v3.5-ea2  ✓    odh-v3.5-ea2 ✓  draft URL       3/3 found
-workload-variant-autoscaler  release-v3.5-ea2  ✓    odh-v3.5-ea2 ✓  draft URL       1/1 found
-llm-d-kv-cache               release-v3.5-ea2  ✓    odh-v3.5-ea2 ✓  draft URL       0/1 found  ⚠ image pending
+workload-variant-autoscaler  release-v3.5-ea2  ✓    odh-v3.5-ea2 ✓  draft URL       0/1 found  ⚠ image pending
 
 KServe metadata PR:  <pr-url>
 Tracker comment:     <comment-url> (or "skipped")
@@ -246,8 +245,8 @@ Follow-ups for the release manager:
 - Review the KServe PR and request reviews from KServe maintainers.
 - Confirm Konflux UI shows each pipeline run as Succeeded.
 - ⚠ Pending Quay images (verify manually — Konflux may still be building, or it failed):
-    quay.io/opendatahub/llm-d-kv-cache:v3.5-ea2
-    → https://quay.io/repository/opendatahub/llm-d-kv-cache?tab=tags
+    quay.io/opendatahub/workload-variant-autoscaler:v3.5-ea2
+    → https://quay.io/repository/opendatahub/workload-variant-autoscaler?tab=tags
 ```
 
 ## Scripts (used by the orchestrator and by sub-agents)

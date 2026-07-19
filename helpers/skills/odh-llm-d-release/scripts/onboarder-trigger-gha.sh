@@ -9,7 +9,7 @@ if [ "${1:-}" = "--help" ] || [ "${1:-}" = "-h" ]; then
 onboarder-trigger-gha.sh — trigger odh-konflux-onboarder.yml for one component.
 
 Required:
-  --component <name>            Dropdown value (e.g. llm-d-inference-scheduler)
+  --component <name>            Dropdown value (e.g. llm-d-router)
   --pr-target-branch <name>     Release branch (e.g. release-v3.5-ea2)
   --version <vX.Y-eaN>          ODH version (e.g. v3.5-ea2); becomes the
                                 Konflux image tag
