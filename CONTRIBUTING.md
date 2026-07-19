@@ -42,7 +42,6 @@ This is the most common type of contribution. The repository hosts four tool typ
 | Type | Location | Format |
 |------|----------|--------|
 | **Skills** | `helpers/skills/<name>/` | Directory with `SKILL.md` and optional `scripts/` |
-| **Commands** | `helpers/commands/` | Single Markdown file |
 | **Agents** | `helpers/agents/` | Single Markdown file |
 | **Gemini Gems** | `helpers/gems/` | Entry in `gems.yaml` |
 
@@ -75,14 +74,14 @@ make lint      # Run all linters and validation checks
 Run `make update` first and **commit any generated changes** before running `make lint`. The `lint` target re-runs `make update` internally and will fail if there are uncommitted diffs.
 
 The `lint` target runs:
-- **[skillsaw](https://github.com/stbenjam/skillsaw)** -- validates plugin structure, skills, and commands
+- **[skillsaw](https://github.com/stbenjam/skillsaw)** -- validates plugin structure and skills
 - **ruff** -- checks and formats Python code
 - **shellcheck** -- lints shell scripts
 - Verifies that `make update` produces no uncommitted changes
 
 ### Test Locally (Claude Code)
 
-To test a skill or command with Claude Code before submitting:
+To test a skill with Claude Code before submitting:
 
 1. Open `claude`
 2. Run `/plugin marketplace add ./`
@@ -127,16 +126,6 @@ Common optional fields:
 | `metadata` | Block for `author`, `version`, and `tags` |
 
 Study existing skills in `helpers/skills/` for examples of structure and patterns.
-
-### Commands
-
-Commands are single Markdown files in `helpers/commands/`:
-
-```text
-helpers/commands/my-command.md
-```
-
-See `helpers/commands/hello-world-echo.md` for an example.
 
 ### Agents
 
@@ -235,6 +224,7 @@ We are committed to providing a welcoming and respectful environment for everyon
 ## Getting Help
 
 - **Questions about contributing?** Open a [blank issue](https://github.com/opendatahub-io/ai-helpers/issues/new) or reach out to the maintainers.
+- **Need assistance on a PR or issue?** Ping `@odh-ai-helpers` in `#forum-aipcc` or `#team-ai-eng-all` on Red Hat Slack and someone from the team will help.
 - **Not sure which tool type to use?** Review the [README](README.md) for descriptions of each type, or open an [Idea issue](https://github.com/opendatahub-io/ai-helpers/issues/new?assignees=&labels=enhancement%2Chelp+wanted%2Cidea&template=07_idea_request.md&title=%5BIdea%5D+) and we'll help.
 - **Using AI to develop tools is encouraged!** This is an AI tools repository -- using Claude Code, Cursor, or other AI assistants to help build your contribution is perfectly fine.
 

@@ -34,6 +34,12 @@
     },
     "llm-d": {
       "name": "LLM-D"
+    },
+    "odh modules": {
+      "name": "ODH Modules"
+    },
+    "maas": {
+      "name": "MaaS"
     }
   },
   "tools": {
@@ -114,6 +120,14 @@
         "allowed_tools": "Bash Read Grep Glob"
       },
       {
+        "name": "aipcc-commit-suggest",
+        "description": "Generate AIPCC Commits style commit messages or summarize existing commits",
+        "category": "aipcc",
+        "file_path": "helpers/skills/aipcc-commit-suggest/SKILL.md",
+        "id": "aipcc-commit-suggest",
+        "allowed_tools": ""
+      },
+      {
         "name": "code-review",
         "description": "Perform AI code review on a GitLab MR or local branch. Reviews all commits since the base branch, produces structured JSON feedback with inline comments, and posts results to GitLab (CI) or displays them locally. Use when asked to review code changes, do a code review, or run ai-review.\n",
         "category": "general",
@@ -128,6 +142,14 @@
         "file_path": "helpers/skills/coderabbit-review/SKILL.md",
         "id": "coderabbit-review",
         "allowed_tools": "Bash(gh pr view:*) Bash(gh repo view:*) Bash(git remote:*) Bash(git branch:*) Bash(gh pr list:*) Bash(gh api:*) Bash(curl:*) Bash(sha256sum:*) Read Glob Grep Edit AskUserQuestion"
+      },
+      {
+        "name": "create-delivery-postmortem",
+        "description": "Use when a release delay, missed deadline, or delivery incident needs a structured post-mortem. Facilitates context gathering, timeline synthesis, and interactive Five Whys root cause analysis. Produces an executive-ready document in HTML or Markdown.",
+        "category": "general",
+        "file_path": "helpers/skills/create-delivery-postmortem/SKILL.md",
+        "id": "create-delivery-postmortem",
+        "allowed_tools": "Read Write Bash(git config:*) Bash(open:*) Bash(xdg-open:*) AskUserQuestion"
       },
       {
         "name": "cve-fix-apply",
@@ -258,6 +280,14 @@
         "allowed_tools": "Bash"
       },
       {
+        "name": "github-actions-debugger",
+        "description": "Debug and monitor GitHub Actions workflow runs. Check run status, view failed job logs, and troubleshoot CI failures. Use this when the user needs to investigate GitHub Actions failures, inspect job output, or identify the root cause of a broken workflow run.",
+        "category": "general",
+        "file_path": "helpers/skills/github-actions-debugger/SKILL.md",
+        "id": "github-actions-debugger",
+        "allowed_tools": "Bash(gh:*)"
+      },
+      {
         "name": "github-sync-upstream",
         "description": "Sync code from an upstream GitHub repository into a target fork (e.g., opendatahub-io midstream). Detects remotes from the current repo, or clones fresh if run from outside. Fetches upstream, merges into a sync branch, restores protected files, resolves conflicts, and opens a PR to the target GitHub repo. Use when asked to sync upstream, merge upstream changes, or bring a GitHub fork up to date with its upstream source.",
         "category": "git workflows",
@@ -290,6 +320,14 @@
         "allowed_tools": "Bash"
       },
       {
+        "name": "hello-world-echo",
+        "description": "Hello world plugin implementation",
+        "category": "general",
+        "file_path": "helpers/skills/hello-world-echo/SKILL.md",
+        "id": "hello-world-echo",
+        "allowed_tools": ""
+      },
+      {
         "name": "jira-activity",
         "description": "Summarize Jira ticket activity, including child tickets, to detect stale tickets in the backlog. Use when user asks to review one or more Jira tickets to determine if they are being worked on.",
         "category": "jira management",
@@ -312,6 +350,14 @@
         "file_path": "helpers/skills/jira-autofix-cve-resolve/SKILL.md",
         "id": "jira-autofix-cve-resolve",
         "allowed_tools": "Read Write Bash Skill"
+      },
+      {
+        "name": "jira-sprint-summary",
+        "description": "Generate comprehensive sprint summaries by analyzing JIRA sprint data, including issue breakdown, progress metrics, and team performance insights.",
+        "category": "general",
+        "file_path": "helpers/skills/jira-sprint-summary/SKILL.md",
+        "id": "jira-sprint-summary",
+        "allowed_tools": ""
       },
       {
         "name": "jira-status-summary",
@@ -362,12 +408,60 @@
         "allowed_tools": "Bash, Skill"
       },
       {
+        "name": "konflux-application",
+        "description": "Manage Konflux application",
+        "category": "general",
+        "file_path": "helpers/skills/konflux-application/SKILL.md",
+        "id": "konflux-application",
+        "allowed_tools": ""
+      },
+      {
+        "name": "konflux-component",
+        "description": "Manage Konflux component",
+        "category": "general",
+        "file_path": "helpers/skills/konflux-component/SKILL.md",
+        "id": "konflux-component",
+        "allowed_tools": ""
+      },
+      {
         "name": "learning-mode",
         "description": "Hands-on mentoring: the agent scaffolds work, then pauses so the engineer writes small, meaningful code (roughly 5–15 lines) for practice. Use when the user enables learning mode, asks for guided mentoring, hands-on practice, collaborative coding, or teaching while building a feature.",
         "category": "general",
         "file_path": "helpers/skills/learning-mode/SKILL.md",
         "id": "learning-mode",
         "allowed_tools": ""
+      },
+      {
+        "name": "maas-nightly-qe-impact",
+        "description": "Assess whether a Models-as-a-Service autofix change requires follow-up in opendatahub-tests or ods-ci nightly QE pipelines. Runs as a Jira autofix post_review extension for the Model as a Service component. Appends a Nightly QE Impact section to the PR description and writes informational findings. Use when autofix completes a fix in models-as-a-service.",
+        "category": "maas",
+        "file_path": "helpers/skills/maas-nightly-qe-impact/SKILL.md",
+        "id": "maas-nightly-qe-impact",
+        "allowed_tools": "Read Write Bash Grep Glob"
+      },
+      {
+        "name": "module-compliance",
+        "description": "Check an ODH module operator repository for contract violations against the platform onboarding guide. Validates PlatformObject status, CRD structure, Helm chart content, webhook ownership, metadata conventions, and reconciler chain ordering. Use during code review or after scaffolding a new module.",
+        "category": "odh modules",
+        "file_path": "helpers/skills/module-compliance/SKILL.md",
+        "id": "module-compliance",
+        "allowed_tools": "Read Grep Glob"
+      },
+      {
+        "name": "module-migrate",
+        "description": "Read existing in-tree ODH operator component code and produce a step-by-step extraction checklist for migrating it to a standalone module. Analyzes controller logic, webhooks, RBAC, embedded manifests, and DSC field mappings. Use when extracting a component from the monolithic operator into its own module repo.",
+        "category": "odh modules",
+        "file_path": "helpers/skills/module-migrate/SKILL.md",
+        "id": "module-migrate",
+        "allowed_tools": "Read Grep Glob Write"
+      },
+      {
+        "name": "module-scaffold",
+        "description": "Given a component name, generate a complete standalone ODH module operator repository. Produces Go module, CRD types implementing PlatformObject, controller skeleton with reconciler builder pattern, Helm chart, Makefile, CI config, singleton webhook, and AGENTS.md. Use when starting a new module from scratch.",
+        "category": "odh modules",
+        "file_path": "helpers/skills/module-scaffold/SKILL.md",
+        "id": "module-scaffold",
+        "allowed_tools": "Bash Read Grep Glob Write Edit"
       },
       {
         "name": "non-redhat-rpms",
@@ -490,6 +584,14 @@
         "allowed_tools": "Bash Read Grep"
       },
       {
+        "name": "rpm-examine",
+        "description": "Analyze RPM build.log failures",
+        "category": "general",
+        "file_path": "helpers/skills/rpm-examine/SKILL.md",
+        "id": "rpm-examine",
+        "allowed_tools": ""
+      },
+      {
         "name": "security-alert",
         "description": "Use this skill to filter a pre-fetched set of Hacker News stories down to those that report supply-chain security threats relevant to software developers — including malicious packages on npm or PyPI, compromised developer tooling, and attacks targeting source code repositories or CI/CD infrastructure. Reads stories from stories.json in the workspace, performs semantic analysis (fetching HN threads when the title alone is ambiguous), and writes the stories worth alerting on to findings.json.",
         "category": "aipcc",
@@ -512,6 +614,22 @@
         "file_path": "helpers/skills/torchtalk-analyzer/SKILL.md",
         "id": "torchtalk-analyzer",
         "allowed_tools": "Bash Read Grep Glob"
+      },
+      {
+        "name": "torchtalk-setup",
+        "description": "Install and configure TorchTalk MCP server for PyTorch cross-language analysis",
+        "category": "pytorch",
+        "file_path": "helpers/skills/torchtalk-setup/SKILL.md",
+        "id": "torchtalk-setup",
+        "allowed_tools": ""
+      },
+      {
+        "name": "torchtalk-trace",
+        "description": "Trace a PyTorch function's cross-language binding chain (Python -> C++ -> CUDA)",
+        "category": "pytorch",
+        "file_path": "helpers/skills/torchtalk-trace/SKILL.md",
+        "id": "torchtalk-trace",
+        "allowed_tools": ""
       },
       {
         "name": "triage-bug-readiness",
@@ -592,72 +710,6 @@
         "file_path": "helpers/skills/vllm-slack-summary/SKILL.md",
         "id": "vllm-slack-summary",
         "allowed_tools": ""
-      }
-    ],
-    "commands": [
-      {
-        "name": "aipcc-commit-suggest",
-        "description": "Generate AIPCC Commits style commit messages or summarize existing commits",
-        "category": "aipcc",
-        "file_path": "helpers/commands/aipcc-commit-suggest.md",
-        "argument_hint": "[N]",
-        "synopsis": "/aipcc:commit-suggest       # Analyze staged changes"
-      },
-      {
-        "name": "hello-world-echo",
-        "description": "Hello world plugin implementation",
-        "category": "general",
-        "file_path": "helpers/commands/hello-world-echo.md",
-        "argument_hint": "[name]",
-        "synopsis": "/hello-world:echo [name]"
-      },
-      {
-        "name": "jira-sprint-summary",
-        "description": "Generate comprehensive sprint summaries by analyzing JIRA sprint data, including issue breakdown, progress metrics, and team performance insights.",
-        "category": "general",
-        "file_path": "helpers/commands/jira-sprint-summary.md",
-        "argument_hint": "<sprint-name> [options]",
-        "synopsis": "/jira:sprint-summary <sprint-name> [options]"
-      },
-      {
-        "name": "konflux-application",
-        "description": "Manage Konflux application",
-        "category": "general",
-        "file_path": "helpers/commands/konflux-application.md",
-        "argument_hint": "<subcommand> [args]",
-        "synopsis": "/konflux:application status <application>"
-      },
-      {
-        "name": "konflux-component",
-        "description": "Manage Konflux component",
-        "category": "general",
-        "file_path": "helpers/commands/konflux-component.md",
-        "argument_hint": "<subcommand> [args]",
-        "synopsis": "/konflux:component status <component>"
-      },
-      {
-        "name": "rpm-examine",
-        "description": "Analyze RPM build.log failures",
-        "category": "general",
-        "file_path": "helpers/commands/rpm-examine.md",
-        "argument_hint": "\"[copr-chroot-url] OR [build-log-url] [srpm-url] OR [build.log] [specfile|dist-git] [sources]\"",
-        "synopsis": "/rpm:examine <copr-chroot-url>"
-      },
-      {
-        "name": "torchtalk-setup",
-        "description": "Install and configure TorchTalk MCP server for PyTorch cross-language analysis",
-        "category": "pytorch",
-        "file_path": "helpers/commands/torchtalk-setup.md",
-        "argument_hint": "",
-        "synopsis": "/torchtalk:setup"
-      },
-      {
-        "name": "torchtalk-trace",
-        "description": "Trace a PyTorch function's cross-language binding chain (Python -> C++ -> CUDA)",
-        "category": "pytorch",
-        "file_path": "helpers/commands/torchtalk-trace.md",
-        "argument_hint": "<function-name> [focus]",
-        "synopsis": "/torchtalk:trace <function-name>"
       }
     ],
     "agents": [

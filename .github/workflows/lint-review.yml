@@ -13,7 +13,7 @@ jobs:
       pull-requests: write
     steps:
     - name: Checkout code
-      uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
+      uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
 
     - name: Post skillsaw review comments
-      uses: stbenjam/skillsaw/review@7fd0fe415cc3e3046fa0bb4d096e2c3e206b461c # v0
+      uses: stbenjam/skillsaw/review@b7cb23b15447c510c73b38f6516e356d2a8a95e1 # v0.16.0

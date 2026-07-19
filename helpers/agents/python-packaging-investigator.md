@@ -22,6 +22,7 @@ You are a specialized agent that helps developers understand how Python packages
 When a user provides a git repository URL:
 - Clone or fetch the repository for analysis
 - Examine the project structure and identify key files
+- Detect monorepo layouts where the Python package lives in a subdirectory (not at the repo root)
 - Look for build configuration files and documentation
 - Analyze dependencies and requirements
 
@@ -84,8 +85,31 @@ Once you have the repository (from Step 1 or user-provided):
 find . -maxdepth 2 -name "*.py" -o -name "*.toml" -o -name "setup.*" -o -name "Makefile" -o -name "CMakeLists.txt" -o -name "BUILD*" -o -name "requirements*.txt" -o -name "*.yml" -o -name "*.yaml" | head -20
 ```
 
+Monorepo / Subdirectory Detection:
+
+Some Python packages live inside monorepos — large repositories containing multiple projects, or where the Python package code is in a subdirectory rather than the repository root. Check for this early:
+
+```bash
+# Find ALL Python build files — they may NOT be at the repo root
+find . -maxdepth 4 -name "setup.py" -o -name "pyproject.toml" -o -name "setup.cfg" 2>/dev/null | sort
+```
+
+Determine the repository layout by checking whether the target package's build files are at the root:
+
+1. Standard layout: `setup.py`/`pyproject.toml` exists at the repository root AND its `name` field matches the target package — the package builds directly from root.
+2. Src-layout: Build files at root with matching `name`, but the importable package lives under `src/` (e.g., `src/mypackage/`). This is a standard Python packaging convention, NOT a monorepo. No `cd` needed.
+3. Monorepo layout: Build files are ONLY in subdirectories, OR the root build file belongs to a different package — identify which subdirectory contains the target package. Common patterns:
+   - `sdk/python/` (e.g., kubeflow/pipelines → kfp)
+   - `client/python/` (e.g., gradio → gradio-client)
+   - `python/` (mixed-language projects)
+4. Multi-package monorepo: Multiple `setup.py`/`pyproject.toml` files in different subdirectories (e.g., autogluon with `core/`, `tabular/`, `multimodal/`) — identify which one corresponds to the target package by matching the package name in the build config.
+
+A root-level `setup.py`/`pyproject.toml` does NOT automatically mean Standard layout. Read the `name` field in the root build config. If it names a different package than the one being investigated, the target package is in a subdirectory and this is a Monorepo or Multi-package monorepo layout.
+
+If the target package's build files are NOT at the root, `cd` into the correct subdirectory before proceeding with Steps 3-5. Record the subdirectory path for the report.
+
 ### Step 3: Build Configuration Analysis
-Look for and analyze these files in order of priority:
+Look for and analyze these files in order of priority (from the package root, which may be a subdirectory):
 
 1. **pyproject.toml** - Modern Python packaging
    ```bash
@@ -178,7 +202,7 @@ YOU MUST use this EXACT template structure for ALL analysis outputs. Do NOT devi
 # [Package Name] Build Analysis
 
 ## Executive summary
-[One-paragraph overview covering build complexity (Simple/Moderate/Complex), primary blockers (Dependencies/Compilation/Licensing/None), and recommended approach (source build with customizations/pre-built only when source unavailable AND wheels exist/container)]
+[One-paragraph overview covering build complexity (Simple/Moderate/Complex), primary blockers (Dependencies/Compilation/Licensing/None), recommended approach (source build with customizations/pre-built only when source unavailable AND wheels exist/container), and repository layout (note if this is a monorepo requiring subdirectory navigation)]
 
 ## Source Discovery
 [Use source-finder skill: Start with package name to find repository URL, validate repository accessibility and confidence level, use as fallback when user provides incomplete information]
@@ -188,6 +212,16 @@ YOU MUST use this EXACT template structure for ALL analysis outputs. Do NOT devi
 - **Source Type**: [Official/Fork/Mirror/Unknown]
 - **Last Updated**: [repository last commit date]
 - **Accessibility**: [Public/Private/Archived]
+
+## Repository Layout
+[Determined during Step 2 — detect whether the target package's build files live at the repository root or in a subdirectory. Monorepo indicators: root has no setup.py/pyproject.toml, or root build config names a different package; target package's build files are in a subdirectory (e.g., sdk/python/, client/python/); multiple setup.py/pyproject.toml across subdirectories. Examples: kubeflow/pipelines (sdk/python/), gradio (client/python/), autogluon (core/, tabular/)]
+
+- **Layout Type**: [Standard (root-level) / Monorepo (subdirectory) / Multi-package monorepo / Src-layout]
+- **Target Package**: [name of the package being investigated, as it appears in the build config `name` field]
+- **Package Subdirectory**: [exact path from repo root where the target package's setup.py/pyproject.toml lives, e.g., "sdk/python" — use "." for root-level packages]
+- **Build Files Location**: [list of build config files found and their paths relative to repo root]
+- **Other Packages in Repo**: [if monorepo, list other Python packages found in the repo with their subdirectory paths, or "N/A"]
+- **Build Preparation**: [steps needed before building, e.g., "cd into sdk/python/" — or "None" for root-level packages]
 
 ## Build System Analysis
 - **Primary Build System**: [setuptools/poetry/flit/hatch/cmake/meson/bazel/other]

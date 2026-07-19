@@ -59,3 +59,11 @@ Compliance:
 
 LLM-D:
   - odh-llm-d-release
+
+ODH Modules:
+  - module-compliance
+  - module-scaffold
+  - module-migrate
+
+MaaS:
+  - maas-nightly-qe-impact
