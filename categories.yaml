@@ -57,6 +57,9 @@ Git Workflows:
 Compliance:
   - non-redhat-rpms
 
+LLM-D:
+  - odh-llm-d-release
+
 ODH Modules:
   - module-compliance
   - module-scaffold
