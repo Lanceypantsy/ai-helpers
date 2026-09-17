@@ -16,7 +16,6 @@ Jira ticket management, search, triage, and automation
 - **jira-activity** — Summarize Jira ticket activity, including child tickets, to detect stale tickets in the backlog.
 - **jira-aipcc-create** — Create Jira issues in the AIPCC project.
 - **jira-sprint-summary** — Generate comprehensive sprint summaries by analyzing JIRA sprint data, including issue breakdown, progress metrics, and team performance insights.
-- **jira-status-summary** — Update the Status Summary and Color Status fields on AIPCC Feature and Initiative tickets.
 - **jira-upload-chat-log** — Use this skill to export and upload the current chat conversation as a markdown file attachment to a JIRA ticket for later review and documentation.
 - **jira-workitem-attach** — Upload file attachments to Jira tickets.
 - **jira-workitem-comment** — Add comments to Jira tickets using simple text or Jira markup (ADF JSON).
