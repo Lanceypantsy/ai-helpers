@@ -295,7 +295,7 @@
       {
         "name": "jira-aipcc-create",
         "id": "jira-aipcc-create",
-        "description": "Create Jira issues in the AIPCC project. Infers summary, description, type, and component from conversation context, confirms with the user before creating. Use when the user wants to file a new AIPCC Jira issue.",
+        "description": "Create AIPCC-org Jira issues in the RHAI project. Infers summary, description, type, and component from conversation context, confirms with the user before creating. Use when the user wants to file a new AIPCC Jira issue.",
         "category": "odh-jira",
         "allowed_tools": "Bash, AskUserQuestion",
         "file_path": "plugins/odh-jira/skills/jira-aipcc-create/SKILL.md"
@@ -307,14 +307,6 @@
         "category": "odh-jira",
         "allowed_tools": "",
         "file_path": "plugins/odh-jira/skills/jira-sprint-summary/SKILL.md"
-      },
-      {
-        "name": "jira-status-summary",
-        "id": "jira-status-summary",
-        "description": "Update the Status Summary and Color Status fields on AIPCC Feature and Initiative tickets. Fetches child ticket activity via the jira-activity skill, generates a brief summary and sets the red/yellow/green color status. Use when asked to update the status summary for a Jira ticket.\n",
-        "category": "odh-jira",
-        "allowed_tools": "Bash",
-        "file_path": "plugins/odh-jira/skills/jira-status-summary/SKILL.md"
       },
       {
         "name": "jira-upload-chat-log",

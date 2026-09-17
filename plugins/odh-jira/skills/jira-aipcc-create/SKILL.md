@@ -1,13 +1,13 @@
 ---
 name: jira-aipcc-create
-description: Create Jira issues in the AIPCC project. Infers summary, description, type, and component from conversation context, confirms with the user before creating. Use when the user wants to file a new AIPCC Jira issue.
+description: Create AIPCC-org Jira issues in the RHAI project. Infers summary, description, type, and component from conversation context, confirms with the user before creating. Use when the user wants to file a new AIPCC Jira issue.
 allowed-tools: Bash, AskUserQuestion
 user-invocable: true
 ---
 
 # Create AIPCC Jira Issue
 
-Create Jira issues in the AIPCC project using the `acli` CLI.
+Create Jira issues for the AIPCC org in the RHAI project using the `acli` CLI.
 
 ## Prerequisites
 
@@ -31,16 +31,15 @@ Analyze the conversation to determine:
    - `Task`: unit of work to be accomplished, not end-user facing
 4. **Component**: One of the valid AIPCC components:
    - `Accelerator Enablement`
-   - `AI Eng Agilist`
    - `AI Testing + Workflow Validation`
    - `AIPCC Ecosystems`
    - `AIPCC Productization`
-   - `Development Platform`
    - `Model Validation`
    - `PyTorch`
+   - `Wheel Building`
    - `Wheel Package Index`
 
-5. **Parent Epic** (optional): If the user specifies an epic key (e.g. AIPCC-1234), include it as the parent
+5. **Parent Epic** (optional): If the user specifies an epic key (e.g. RHAI-1234), include it as the parent
 
 If any field cannot be confidently inferred, ask the user.
 
@@ -53,7 +52,7 @@ I'll create the following AIPCC JIRA issue:
 
 **Type**: Bug
 **Component**: Wheel Package Index
-**Parent Epic**: AIPCC-1234 (if specified)
+**Parent Epic**: RHAI-1234 (if specified)
 **Summary**: Fix duplicate CI pipeline runs
 **Description**:
 > [description]
@@ -73,7 +72,7 @@ If the user specifies a parent epic, include the `parent` field in `additionalAt
 
 ```json
 {
-  "projectKey": "AIPCC",
+  "projectKey": "RHAI",
   "summary": "<summary>",
   "type": "<type>",
   "description": {
@@ -119,7 +118,7 @@ acli jira workitem create --from-json <JSON-FILE>
 On success, `acli` prints the new issue key and URL. Report this to the user:
 
 ```
-Created AIPCC-12345: https://redhat.atlassian.net/browse/AIPCC-12345
+Created RHAI-12345: https://redhat.atlassian.net/browse/RHAI-12345
 ```
 
 Clean up the temporary JSON file after creation.
@@ -154,6 +153,6 @@ User: File a task for updating the CI pipeline docs
 Assistant: I'll create an AIPCC task. Which component does this fall under?
   1. AIPCC Productization
   2. Wheel Package Index
-  3. Development Platform
+  3. Wheel Building
   ...
 ```

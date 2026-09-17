@@ -14,9 +14,8 @@ Jira ticket management, search, triage, and automation
 - **acli-setup-check** — Verify acli installation and authentication.
 - **ai-bug-fix-triage** — Triage JIRA bugs against repository code to classify AI fixability.
 - **jira-activity** — Summarize Jira ticket activity, including child tickets, to detect stale tickets in the backlog.
-- **jira-aipcc-create** — Create Jira issues in the AIPCC project.
+- **jira-aipcc-create** — Create AIPCC-org Jira issues in the RHAI project.
 - **jira-sprint-summary** — Generate comprehensive sprint summaries by analyzing JIRA sprint data, including issue breakdown, progress metrics, and team performance insights.
-- **jira-status-summary** — Update the Status Summary and Color Status fields on AIPCC Feature and Initiative tickets.
 - **jira-upload-chat-log** — Use this skill to export and upload the current chat conversation as a markdown file attachment to a JIRA ticket for later review and documentation.
 - **jira-workitem-attach** — Upload file attachments to Jira tickets.
 - **jira-workitem-comment** — Add comments to Jira tickets using simple text or Jira markup (ADF JSON).
