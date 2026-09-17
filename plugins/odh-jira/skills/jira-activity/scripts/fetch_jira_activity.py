@@ -21,8 +21,8 @@ Usage:
   fetch_jira_activity.py <ticket-key> [--days N]
 
 Examples:
-  fetch_jira_activity.py RHOAIENG-1234
-  fetch_jira_activity.py RHOAIENG-1234 --days 60
+  fetch_jira_activity.py RHAI-1234
+  fetch_jira_activity.py RHAI-1234 --days 60
 """
 
 import argparse
@@ -232,7 +232,7 @@ def main() -> None:
     )
     parser.add_argument(
         "ticket_key",
-        help="JIRA ticket key (e.g., RHOAIENG-1234)",
+        help="JIRA ticket key (e.g., RHAI-1234)",
     )
     parser.add_argument(
         "--days",

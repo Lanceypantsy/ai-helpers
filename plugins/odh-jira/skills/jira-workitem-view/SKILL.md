@@ -27,7 +27,7 @@ If the setup check fails, stop execution and guide the user to fix the issue.
 
 ### Step 2: Determine Ticket Key
 
-1. If a ticket key is provided by the user (e.g., "AIPCC-1234"), use it
+1. If a ticket key is provided by the user (e.g., "RHAI-1234"), use it
 2. Otherwise, search the conversation history for Jira ticket references matching the pattern `[A-Z]+-\d+`
 3. If no ticket is found, ask the user: "Which Jira ticket would you like to view?"
 
@@ -46,7 +46,7 @@ This returns a comprehensive JSON object containing all ticket fields, custom fi
 Parse the JSON output and extract the following fields for display:
 
 #### Core Fields
-- **Key**: Issue key (e.g., AIPCC-1234)
+- **Key**: Issue key (e.g., RHAI-1234)
 - **Summary**: Issue title
 - **Type**: Issue type (Bug, Story, Epic, Feature, etc.)
 - **Status**: Current status (To Do, In Progress, Done, etc.)
@@ -70,7 +70,7 @@ Parse the JSON output and extract the following fields for display:
 - **Components**: List of components
 - **Fix Version**: Target version (if set)
 
-#### AIPCC Custom Fields (if applicable)
+#### RHAI Custom Fields (if applicable)
 - **Status Summary** (customfield_10814): Leadership status update
 - **Color Status** (customfield_10712): Red/Yellow/Green health indicator
 
@@ -88,7 +88,7 @@ Parse the JSON output and extract the following fields for display:
 Present the parsed information in a structured, human-readable format:
 
 ```
-=== AIPCC-1234: Fix duplicate CI pipeline runs ===
+=== RHAI-1234: Fix duplicate CI pipeline runs ===
 
 Type: Bug
 Status: In Progress → Done
@@ -113,15 +113,15 @@ Status Summary (2024-03-20):
   Color Status: Green
 
 Links:
-  - Blocks: AIPCC-5678 (CI refactoring epic)
-  - Relates to: RHOAIENG-910 (upstream fix)
+  - Blocks: RHAI-5678 (CI refactoring epic)
+  - Relates to: RHAI-910 (upstream fix)
 
 Recent Comments (3):
   [2024-03-20] code-samurai: Fix verified in staging, ready to merge
   [2024-03-19] super-picky-reviewer: LGTM, approved for merge
   [2024-03-18] code-samurai: Initial fix implemented, testing locally
 
-View in Jira: https://redhat.atlassian.net/browse/AIPCC-1234
+View in Jira: https://redhat.atlassian.net/browse/RHAI-1234
 ```
 
 ### Step 6: Offer Additional Options
@@ -151,28 +151,28 @@ Store the full ticket context in the conversation for later reference. This allo
 ### Basic Usage
 
 ```text
-User: /jira-workitem-view AIPCC-1234
+User: /jira-workitem-view RHAI-1234
 Assistant: [Fetches and displays formatted ticket details]
 ```
 
 ### Context Detection
 
 ```text
-User: We need to look at AIPCC-1234 to understand the bug
-Assistant: Let me fetch the details for AIPCC-1234...
+User: We need to look at RHAI-1234 to understand the bug
+Assistant: Let me fetch the details for RHAI-1234...
 [Displays ticket information]
 ```
 
 ### Show Full Description
 
 ```text
-User: Show me the full description for AIPCC-1234
+User: Show me the full description for RHAI-1234
 Assistant: [Fetches ticket and displays complete description text]
 ```
 
 ### View Specific Fields
 
 ```text
-User: What's the status of AIPCC-1234?
-Assistant: AIPCC-1234 is currently "In Progress" (updated 2024-03-20)
+User: What's the status of RHAI-1234?
+Assistant: RHAI-1234 is currently "In Progress" (updated 2024-03-20)
 ```
